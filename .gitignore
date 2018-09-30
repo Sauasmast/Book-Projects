@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# my gitignore documents
+*~
+.DS_Store
+.vscode
+Book/.env

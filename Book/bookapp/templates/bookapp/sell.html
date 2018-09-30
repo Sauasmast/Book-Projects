@@ -1,0 +1,20 @@
+{% extends './base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-8 formdiv p-3">
+{% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }} alert alert-success" {% endif %}> {{ message }} </div>
+    {% endfor %}
+{% endif %}
+
+<h2 class="text-center"> Sell Books </h2>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-primary btn-md mb-3" type="submit"> Submit </button>
+</form>
+</div>
+</div>
+{% endblock %}

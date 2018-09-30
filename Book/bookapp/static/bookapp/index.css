@@ -1,0 +1,73 @@
+/* ------------------------------------------------- Universal Component -------------------------------------- */
+*, div{
+    box-sizing: border-box;
+    font-family: 'Muli', sans-serif;
+    overflow-x : hidden;
+}
+
+.container-fluid{
+    padding: 0px; 
+}
+
+.content-center{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+}
+
+.formdiv{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+ul{
+    list-style: none;
+}
+
+ul li {
+    margin-bottom: 2px;
+}
+
+h2:after{
+    display:block;
+    height: 3px;
+    background-color: black;
+    content: "";
+    width : 100px;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+
+/* ------------------------------------------------- Logged In: First Page -------------------------------------- */
+.buy_sell_profile a{
+    background-color: black;
+    height: 360px;
+    width: 250px;
+    border-radius: 50%;
+}
+
+.buy_sell_profile a h1{
+    color:white;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+}
+
+.buy_sell_profile div a:hover{
+    opacity: 0.5;
+}
+
+
+/* --------------------------------------- For Images  --------------------------------------- */
+
+.book_photo {
+    height: 250px;
+    width: 250px;
+    margin-bottom: 10px;
+}
