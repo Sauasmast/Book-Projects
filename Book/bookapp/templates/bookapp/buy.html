@@ -1,0 +1,42 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center">
+            <h2> Buy Books </h2>
+    </div>
+</div>
+
+<div class="row justify-content-around">
+{% for list in object_list %}
+        <div class="col-3 mr-3 mb-5 text-center formdiv">
+            <div class="row justify-content-center p-3">
+                <div class="col-6 mb-3">
+                    {% if list.photo %}
+                    <img src="{{list.photo.url}}" style="width:150px; height:150px">
+                    {% else %}
+                    <img src="{% static 'bookapp/default.jpg' %}" style="width:150px; height:150px"> 
+                    {% endif %}
+                </div>
+        
+                <div class="col-12">
+                <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center active">
+                            Seller: {{list.owner.first_name}} {{ list.owner.last_name}} 
+                            </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{list.book_title}}
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            ISBN: {{list.isbn_no}}
+                        </li>
+                      </ul>
+                <a class="btn btn-sm btn-primary" href="{% url 'details' pk=list.pk %}"> See Details </a>
+                </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

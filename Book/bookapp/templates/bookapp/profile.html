@@ -1,0 +1,74 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center mb-5">
+    <div class="col-8 text-center form-div">
+            <h2 class="mb-3"> Profile Information </h2>
+            <ul> 
+                <li> Username: {{user.username}} </li>
+                <li> {{user.first_name}} {{user.last_name}} </li>
+                <li> {{user.email}} </li>
+                <li> User Since : {{user.date_joined}} </li>
+            </ul>
+            <a class="btn btn-primary btn-small" href="{% url 'edit_profile' %}"> Edit Profile </a>
+    </div>
+</div>
+
+<hr />
+
+{% for list in book_obj %}
+<div class="row justify-content-center mb-5">
+    <div class="col-8 text-center">
+
+        <h2 class="mb-3"> Your Inventory </h2>
+{% if messages %}
+    <div class="alert alert-danger" role="alert">
+            {% for message in messages %}
+            <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+    </div>
+{% endif %}
+
+<a href="{% url 'details' pk=list.pk %}">
+<div class="row mb-3 ">
+    <div class="col-4">
+        {% if list.photo %}
+        <img src="{{list.photo.url}}" style="width:250px; height:250px">
+        {% else %}
+        <img src="{% static 'bookapp/default.jpg' %}" style="width:250px; height:250px"> 
+        {% endif %}
+    </div>
+
+
+    <div class="col-8"> 
+            <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Book Title: {{list.book_title}}
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                            ISBN Number: {{list.isbn_no}}
+                    </li>
+                    {% if list.author %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Author: {{list.author}}
+                    </li>
+                    {% endif %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Price: {{list.price}}
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Bargain: {{list.negotiable}}
+                    </li>
+                  </ul>
+    </div>
+</div>
+</a>
+<a class="btn btn-danger btn-small" href="{% url 'delete' pk=list.pk %}"> Sold </a>
+<a class="btn btn-primary btn-small" href="{% url 'edit' pk=list.pk %}"> Edit </a>
+
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
