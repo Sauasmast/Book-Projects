@@ -60,7 +60,7 @@ class Sell_book_view(LoginRequiredMixin, generic.TemplateView):
         return render(request, self.template_name, args)
     
     def post(self, request):
-        form = Sell_form(request.POST)
+        form = Sell_form(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.owner = request.user
@@ -68,6 +68,7 @@ class Sell_book_view(LoginRequiredMixin, generic.TemplateView):
             messages.success(request, "Your book has been listed on our record for sale.")
             form = Sell_form() # Responsible for giving out the empty form for duplication purpose
             return redirect('/sell')
+        
         
 @login_required
 def share(request):

@@ -15,7 +15,7 @@ class Sell_book(models.Model):
     price = models.IntegerField()
     negotiable = models.CharField(max_length=3, choices=baragain_choice)
     description = models.CharField(max_length=2000)
-    photo = models.ImageField(upload_to="photo", blank="True")
+    photo = models.FileField(blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
