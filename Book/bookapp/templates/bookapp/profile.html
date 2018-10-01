@@ -17,18 +17,19 @@
 
 <hr />
 
+<h2 class="mb-3 text-center"> Your Inventory </h2>
+
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+        <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+</div>
+{% endif %}
+
 {% for list in book_obj %}
 <div class="row justify-content-center mb-5">
     <div class="col-8 text-center">
-
-        <h2 class="mb-3"> Your Inventory </h2>
-{% if messages %}
-    <div class="alert alert-danger" role="alert">
-            {% for message in messages %}
-            <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-            {% endfor %}
-    </div>
-{% endif %}
 
 <a href="{% url 'details' pk=list.pk %}">
 <div class="row mb-3 ">

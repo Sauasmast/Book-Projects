@@ -28,4 +28,4 @@ urlpatterns = [
     path('sell', views.Sell_book_view.as_view(), name="sell"),
     path('<int:pk>/edit', views.edit_book, name="edit"),
     path('sendmail/<int:pk>', views.sendmail, name="send_mail")
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

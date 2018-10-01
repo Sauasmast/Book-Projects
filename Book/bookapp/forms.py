@@ -51,10 +51,10 @@ class Sell_form(ModelForm):
     ('No', 'No')
 )
 
-    book_title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}))
+    book_title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Book Title'}))
     isbn_no = forms.IntegerField(widget= forms.TextInput(attrs={'class':'form-control', 'placeholder':'ISBN No.'}))
-    author = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}))
-    price = forms.IntegerField(widget= forms.TextInput(attrs={'class':'form-control', 'placeholder':'ISBN No.'}))
+    author = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Author FullName'}))
+    price = forms.IntegerField(widget= forms.TextInput(attrs={'class':'form-control', 'placeholder':'Price in dollars'}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'row':'5'}))
 
     class Meta:
