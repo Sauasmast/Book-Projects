@@ -13,9 +13,10 @@
         </div>
     {% endfor %}
 {% endfor %}
-{% for field in form %}
+
 <form class="signup_form" method="POST">
 {% csrf_token %}
+{% for field in form %}
 <div class="fieldWrapper mb-3">
     {{ field.label_tag }} {{ field }}
     {% if field.help_text %}
@@ -27,6 +28,7 @@
         <button type="submit" class="btn btn-lg btn-primary "> Register </button>
 </div>
 </form>
+
 {% else %}
 <form class="signup_form" method="POST">
     {% csrf_token %}

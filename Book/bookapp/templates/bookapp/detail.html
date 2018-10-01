@@ -9,7 +9,7 @@
         {% if messages %}
         <div class="alert">
                 {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <div {% if message.tags %} class="{{ message.tags }} alert alert-success" {% endif %}> {{ message }} </div>
                 {% endfor %}
         </div>
         {% endif %}
@@ -43,7 +43,7 @@
                         </li>
                         {% endif %}
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Price: {{object_list.price}}
+                                Price: ${{object_list.price}}
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Negotiable: {{object_list.negotiable}}

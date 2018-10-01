@@ -5,16 +5,35 @@
     <div class="col-8 formdiv p-3">
 {% if messages %}
     {% for message in messages %}
-    <div {% if message.tags %} class="{{ message.tags }} alert alert-success" {% endif %}> {{ message }} </div>
+    <div {% if message.tags %} class="{{ message.tags }} alert alert-danger" {% endif %}> {{ message }} </div>
     {% endfor %}
 {% endif %}
 
 <h2 class="text-center"> Sell Books </h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form.as_p}}
+
+    {% for field in form %}
+    <div class="fieldWrapper mb-3">
+
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{field.help_text}}</small>
+        {% endif %}
+
+
+        {% if field.errors %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger mt-2">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% endfor %}
     <button class="btn btn-primary btn-md mb-3" type="submit"> Submit </button>
 </form>
 </div>
 </div>
+
 {% endblock %}

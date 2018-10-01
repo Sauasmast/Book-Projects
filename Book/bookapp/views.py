@@ -68,6 +68,9 @@ class Sell_book_view(LoginRequiredMixin, generic.TemplateView):
             messages.success(request, "Your book has been listed on our record for sale.")
             form = Sell_form() # Responsible for giving out the empty form for duplication purpose
             return redirect('/sell')
+        else:
+            messages.success(request, "You did something wrong. Please follow the instructions.")
+            return render(request, self.template_name , {'form':form})
         
         
 @login_required
