@@ -4,7 +4,7 @@ from django.contrib.auth.forms import User, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.views import generic
-from .models import Sell_book
+from .models import Sell_book, UserProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -71,30 +71,52 @@ class Sell_book_view(LoginRequiredMixin, generic.TemplateView):
         else:
             messages.success(request, "You did something wrong. Please follow the instructions.")
             return render(request, self.template_name , {'form':form})
-        
-        
-@login_required
-def share(request):
-    return render(request, 'bookapp/share.html', {})
 
 
 ''' The profile of the user with the form to edit the profile '''
 @login_required
 def profile(request):
     book_obj = Sell_book.objects.filter(owner=request.user)
-    args = {'user':request.user,'book_obj':book_obj}
+    if (UserProfile.objects.filter(user=request.user)):
+        profile_img = UserProfile.objects.filter(user=request.user)[0]
+    else:
+        profile_img = None
+    args = {'user':request.user,'book_obj':book_obj, 'profile':profile_img}
 
     return render(request, 'bookapp/profile.html', args)
 
 @login_required
 def edit_profile(request):
     if (request.method == "POST"):
-        form = Editprofile(request.POST, instance = request.user)
+        form = Editprofile(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('profile')
+
+            # For updating the user model of the djnago 
+            profile = User.objects.filter(username = request.user.username)[0]
+            profile.username = form.cleaned_data['username']
+            profile.email = form.cleaned_data['email']
+            profile.first_name = form.cleaned_data['first_name']
+            profile.last_name = form.cleaned_data['last_name']
+            profile.save()
+
+            # For updating the profile pic of the user
+            if (UserProfile.objects.filter(user = request.user)):
+                user_pic = UserProfile.objects.filter(user=request.user)[0]
+                user_pic.profile_image = request.FILES['profile_pic']
+                user_pic.save()
+            else:
+                user_pic = UserProfile(user= request.user, profile_image=request.FILES['profile_pic'])
+                user_pic.save()
+
+        return redirect('profile')
     else:
-        form = Editprofile(instance=request.user)
+        #form = Editprofile(instance=request.user) 
+        data = { 'username':request.user.username,
+            'first_name':request.user.first_name,
+            'last_name':request.user.last_name,
+            'email': request.user.email, 
+        }
+        form = Editprofile(initial=data)
         return render(request,"bookapp/edit_profile.html",{'forms':form})
 
 @login_required

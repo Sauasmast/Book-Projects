@@ -5,7 +5,15 @@
 <div class="row justify-content-center mb-5">
     <div class="col-8 text-center form-div">
             <h2 class="mb-3"> Profile Information </h2>
-            <ul> 
+            <div class="col-6 mb-3" style="margin:auto;">
+                {% if profile %}
+                <img src="{{profile.profile_image.url}}" style="width:250px; height:250px; border: 5px solid black; border-radius: 50%; padding:5px; overflow:hidden"> 
+                {% else %}
+                <img src="{% static 'bookapp/default.png' %}" style="width:250px; height:250px; border: 5px solid black; border-radius: 50%; padding:5px; overflow:hidden"> 
+                {% endif %}
+        </div>
+
+            <ul class="pl-0"> 
                 <li> Username: {{user.username}} </li>
                 <li> {{user.first_name}} {{user.last_name}} </li>
                 <li> {{user.email}} </li>

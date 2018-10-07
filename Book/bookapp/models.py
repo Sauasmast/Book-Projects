@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 # 1 alwyas refers to Yes and O always refers to No.
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(help_text='include an image of square size.(250 by 250)')
+
 class Sell_book(models.Model):
     baragain_choice = (
         ('YES', 'YES'),
