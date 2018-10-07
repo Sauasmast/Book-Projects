@@ -27,5 +27,5 @@ urlpatterns = [
     path('delete/<int:pk>', views.delete, name="delete"),
     path('sell', views.Sell_book_view.as_view(), name="sell"),
     path('<int:pk>/edit', views.edit_book, name="edit"),
-    path('sendmail/<int:pk>', views.sendmail, name="send_mail")
+    path('sendmail/<int:pk>', views.sendmail, name="send_mail"),
 ]
