@@ -5,17 +5,28 @@
     overflow-x : hidden;
 }
 
-.container-fluid{
-    padding: 0px; 
+.content-content{
+    display : flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 80vh;
 }
 
-.content-center{
+.container-fluid{
+    padding: 20px;
+}
+
+.row{
+    width: 100%;
+}
+
+/* .content-center{
     position:absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     width: 100%;
-}
+} */
 
 .formdiv{
     border: 2px solid black;
@@ -41,6 +52,9 @@ h2:after{
     margin-bottom: 20px;
 }
 
+h1{
+    overflow: hidden; 
+}
 
 /* ------------------------------------------------- Logged In: First Page -------------------------------------- */
 .buy_sell_profile a{
@@ -57,6 +71,7 @@ h2:after{
     left: 50%;
     transform: translate(-50%,-50%);
     width: 100%;
+    overflow: hidden;
 }
 
 .buy_sell_profile div a:hover{
