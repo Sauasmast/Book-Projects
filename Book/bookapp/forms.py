@@ -52,7 +52,8 @@ class Sell_form(ModelForm):
     isbn_no = forms.IntegerField(widget= forms.TextInput(attrs={'class':'form-control', 'placeholder':'ISBN No.'}))
     author = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Author FullName'}))
     price = forms.IntegerField(widget= forms.TextInput(attrs={'class':'form-control', 'placeholder':'Price in dollars'}))
-    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'row':'5'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please enter the information' + 
+    ' about the condition of the book. For instance: Book is on pretty good condition.', 'row':'5'}))
 
     class Meta:
         model= Sell_book
